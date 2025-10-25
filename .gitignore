@@ -1,0 +1,46 @@
+# OS / editor junk
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Local environment files (XAMPP, etc.)
+xampp/
+htdocs/
+*.bak
+*.tmp
+*.log
+
+# PHP / Composer (if you ever use Composer)
+vendor/
+composer.lock
+
+# Config files with secrets
+config.php
+db.php
+.env
+.env.local
+*.env.php
+
+# Cache, sessions, or temp files
+cache/
+tmp/
+storage/
+session/
+*.log
+
+# Build outputs (if you ever add a build step)
+dist/
+build/
+
+# Node (if you use npm for frontend)
+node_modules/
+npm-debug.log*
+yarn.lock
+pnpm-lock.yaml
+
+# Backups
+*.sql
+*.zip
+*.tar
+*.gz
