@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fresno State Minesweeper</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <img src="assets/dog.gif" class="running-dog-top" alt="running dog">
+<img src="assets/dog.gif" class="running-dog-bottom" alt="running dog">
+    <div class="main-menu">
+        <h1>Fresno State Minesweeper</h1>
+        <div id="loginStatus" class="login-status">Not logged in</div>
+        <div class="btn-container">
+            <a href="game.html" class="btn" id="newGameBtn">New Game</a>
+            <div class="secondary-btn-container">
+                <a href="help.html" class="btn" id="instructionsBtn">Instructions</a>
+                <a href="leaderboard.html" class="btn" id="highScoresBtn">High Scores</a>
+                <a href="contact.html" class="btn" id="contactBtn">Contact</a>
+                <a href="login.html" class="btn" id="loginBtn">Login</a>
+                <a href="signup.html" class="btn" id="signupBtn">Sign Up</a>
+                <button class="btn" id="logoutBtn" style="display: none;">Logout</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Check login status and update UI
+        fetch('php/check_login.php')
+            .then(response => response.json())
+            .then(data => {
+                const loginStatus = document.getElementById('loginStatus');
+                const loginBtn = document.getElementById('loginBtn');
+                const signupBtn = document.getElementById('signupBtn');
+                const logoutBtn = document.getElementById('logoutBtn');
+
+                if (data.loggedIn) {
+                    loginStatus.innerText = `Logged in as ${data.username}`;
+                    loginBtn.style.display = 'none';
+                    signupBtn.style.display = 'none';
+                    logoutBtn.style.display = 'inline-block';
+                } else {
+                    loginStatus.innerText = 'Not logged in';
+                    loginBtn.style.display = 'inline-block';
+                    signupBtn.style.display = 'inline-block';
+                    logoutBtn.style.display = 'none';
+                }
+            });
+
+        // Add logout functionality
+        document.getElementById('logoutBtn').addEventListener('click', async () => {
+            try {
+                const response = await fetch('php/logout.php');
+                const data = await response.json();
+                
+                if (data.success) {
+                    alert(data.message);
+                    window.location.reload(); // Refresh the page to update UI
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fresno State Minesweeper - Leaderboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <img src="assets/dog.gif" class="running-dog-top" alt="running dog">
+<img src="assets/dog.gif" class="running-dog-bottom" alt="running dog">
+    <div class="leaderboard">
+        <h1>Leaderboard</h1>
+        <div class="leaderboard-controls">
+            <select id="sortBy" class="btn">
+                <option value="difficulty">Difficulty</option>
+                <option value="games_won">Games Won</option>
+                <option value="time_taken">Best Time</option>
+            </select>
+        </div>
+        <table class="leaderboard-table">
+            <thead>
+                <tr>
+                    <th>Player</th>
+                    <th>Difficulty</th>
+                    <th>Games Won</th>
+                    <th>Best Time</th>
+                </tr>
+            </thead>
+            <tbody id="leaderboardBody">
+                <!-- Data will be populated by JavaScript -->
+            </tbody>
+        </table>
+        <a href="index.html" class="btn">Back to Menu</a>
+    </div>
+    <script src="js/leaderboard.js"></script>
+</body>
+</html>
+

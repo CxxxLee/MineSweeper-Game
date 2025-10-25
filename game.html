@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Fresno State Minesweeper - Game</title>
+        <link rel="stylesheet" href="css/styles.css">
+        <!-- Remove or comment out until implemented -->
+        <!-- <script src="js/classes/Cell.js" defer></script> -->
+        <!-- <script src="js/classes/Board.js" defer></script> -->
+        <!-- <script src="js/classes/Timer.js" defer></script> -->
+        <!-- <script src="js/classes/SoundManager.js" defer></script> -->
+        <!-- <script src="js/classes/ThemeManager.js" defer></script> -->
+        <!-- <script src="js/classes/UIController.js" defer></script> -->
+        <!-- <script src="js/classes/Game.js" defer></script> -->
+        <script src="js/game.js" defer></script>
+    </head>
+
+    <body>
+        <img src="assets/dog.gif" class="running-dog-top" alt="running dog">
+<img src="assets/dog.gif" class="running-dog-bottom" alt="running dog">
+        <div class="game-container">
+            <div class="game-header">
+                <div class="settings-row">
+                    <div class="difficulty-selector">
+                        <select id="difficulty" class="btn">
+                            <option value="superEasy" selected>Super Easy (5x5, 3 mines)</option>
+                            <option value="easy">Easy (8x8, 10 mines)</option>
+                            <option value="medium">Medium (16x16, 40 mines)</option>
+                            <option value="hard">Hard (24x24, 99 mines)</option>
+                        </select>
+                    </div>
+                    <button onclick="showThemes()" class="btn">Themes</button>
+                </div>
+                <div class="game-info">
+                    Mines: <span id="mines">0</span>
+                    <div id ="timer">
+                        Time: 0
+                    </div>
+                </div>
+            </div>
+            <div id="board"></div>
+            <div class="game-nav">
+                <div class="game-controls">
+                    <button id="flag-button" class="btn">🐾</button>
+                    <button id="restart-button" class="btn">Restart</button>
+                    <button id="mute-button" class="btn" onclick="toggleMute()"></button>
+                </div>
+                <div class="nav-buttons">
+                    <button onclick="showInstructions()" class="btn">Instructions</button>
+                    <a href="index.html" class="btn">Menu</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="instructionsModal" class="modal">
+            <div class="modal-content">
+                <h1>How to Play Minesweeper</h1>
+                <ul>
+                    <li>The goal is to clear the board without detonating any mines.</li>
+                    <li>Left-click to reveal a cell.</li>
+                    <li>Right-click to flag a suspected mine.</li>
+                    <li>Numbers indicate how many mines are adjacent to that cell.</li>
+                    <li>Use logic to deduce where mines are located.</li>
+                    <li>Clear all non-mine cells to win!</li>
+                </ul>
+                <button onclick="closeInstructions()" class="btn">Close</button>
+            </div>
+        </div>
+
+        <div id="themesModal" class="modal">
+            <div class="modal-content">
+                <h1>Theme Settings</h1>
+                <div class="theme-options">
+                    <div class="theme-group">
+                        <h2>Board Style</h2>
+                        <select id="boardStyle" class="btn theme-select">
+                            <option value="fresnoState">Fresno State</option>
+                            <option value="candy">Sweet Candy</option>
+                            <option value="radioactive">Radioactive</option>
+                        </select>
+                    </div>
+                    <div class="theme-group">
+                        <h2>Color Theme</h2>
+                        <select id="colorTheme" class="btn theme-select">
+                            <option value="fresnoState">Fresno State</option>
+                            <option value="candyland">Candy Paradise</option>
+                            <option value="radioactive">Toxic Waste</option>
+                        </select>
+                    </div>
+                </div>
+                <button onclick="closeThemes()" class="btn">Close</button>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
+        <!-- Add audio elements -->
+        <audio id="gameMusic" loop>
+            <source src="assets/gamemusic.mp3" type="audio/mp3">
+        </audio>
+        <audio id="winnerSound">
+            <source src="assets/winner.mp3" type="audio/mp3">
+        </audio>
+        <audio id="explosionSound">
+            <source src="assets/explosion.mp3" type="audio/mp3">
+        </audio>
+    </body>
+    
+</html>
