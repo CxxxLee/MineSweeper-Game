@@ -19,6 +19,12 @@ body {
 }
 
 .main-menu {
+    position:fixed;
+    top:50%;
+    bottom:50%;
+    left:50%;
+    right:50%;
+    transform: translate(-50%, -50%);
     background-color: rgba(0, 44, 118, 0.8); 
     color: #F8F9FA;
     padding: 2rem;
@@ -28,7 +34,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 400px; 
+    width: 400px;
+    height:415px;
 }
 
 h1 {
@@ -1152,3 +1159,10 @@ h1 {
     }
 }
 
+.description{
+    display:flex;
+    flex-direction: column;
+}
+.description a{
+    color:#fff;
+}

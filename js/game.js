@@ -278,20 +278,6 @@ function revealMines() {
     gameMusic.pause();
     gameMusic.currentTime = 0;
     
-    // Play explosion sound
-    const explosionSound = document.getElementById('explosionSound');
-    if (explosionSound) {
-        explosionSound.volume = 1.0; // Ensure full volume
-        explosionSound.currentTime = 0; // Reset to start
-        const playPromise = explosionSound.play();
-        
-        if (playPromise !== undefined) {
-            playPromise.catch(error => {
-                console.log("Error playing explosion sound:", error);
-            });
-        }
-    }
-    
     gameOver = true;
     stopTimer();
     updateGameStats('loss');
@@ -312,7 +298,7 @@ function revealMines() {
         }
     }    
     
-    // Win modal
+    // Game Over Modal
     const modal = document.createElement('div');
     modal.className = 'modal show';
     
@@ -325,19 +311,40 @@ function revealMines() {
     gameOverText.style.marginBottom = '1rem';
     
     const img = document.createElement('img');
-    img.src = 'assets/giphy.webp';
+    img.src = 'assets/marioGameOVer.gif';
     img.alt = 'Game Over';
     
     const closeBtn = document.createElement('button');
     closeBtn.className = 'btn';
     closeBtn.innerText = 'Close';
-    closeBtn.onclick = () => modal.remove();
+
     
     modalContent.appendChild(gameOverText);
     modalContent.appendChild(img);
     modalContent.appendChild(closeBtn);
     modal.appendChild(modalContent);
     document.body.appendChild(modal);
+
+    // Play Game Over sound
+    const GameOverAud = document.getElementById('GameOverAud');
+    if (GameOverAud) {
+        GameOverAud.volume = 0.5; // Ensure full volume
+        GameOverAud.currentTime = 0; // Reset to start
+        const playPromise = GameOverAud.play();
+        
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                console.log("Error playing Game Over sound:", error);
+            });
+        }
+        closeBtn.onclick = () => {
+            if(GameOverAud && !GameOverAud.paused){
+                GameOverAud.pause();
+                GameOverAud.currentTime = 0;
+            }
+            modal.remove();
+        };
+    }
 }
 
 function checkMine(r,c){
