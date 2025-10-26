@@ -22,7 +22,6 @@ var mines = 3;
 var numMines = 3;
 var minesLocation = []; // Array to hold the locations of the mines
 var tilesClicked = 0; // Counter for the number of tiles clicked
-var flagEnabled = false; // Flag to enable flagging mode
 var gameOver = false; // Flag to check if the game is over
 var firstClick = true; // Flag to check if it's the first click
 let restartButton;
@@ -162,45 +161,71 @@ function startGame() {
 
 function initializeUI() {
     document.getElementById("mines").innerText = mines;
-    const flagButton = document.getElementById("flag-button");
-    flagButton.addEventListener("click", setFlag);
     
     restartButton = document.getElementById("restart-button");
     restartButton.addEventListener("click", restartGame);
 }
 
 function createBoard() {
-    const boardElement = document.getElementById("board");
-    boardElement.innerHTML = '';
-    board = [];
-    
-    // Add the current board style class
-    boardElement.classList.add(`board-${currentBoardStyle}`);
-    
-    // Set grid columns based on difficulty
-    boardElement.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
-    
-    for(let r = 0; r < rows; r++) {
-        let row = [];
-        for(let c = 0; c < cols; c++) {
-            const tile = document.createElement("div");
-            tile.id = `${r}-${c}`;
-            tile.classList.add('tile');
-            tile.addEventListener("click", clickTile);
-            boardElement.append(tile);
-            row.push(tile);
-        }
-        board.push(row);
+  const boardElement = document.getElementById("board");
+  boardElement.innerHTML = '';
+  board = [];
+
+  // Add the current board style class
+  boardElement.className = ''; // clear any previous style classes
+  boardElement.classList.add(`board-${currentBoardStyle}`);
+
+  // Grid columns based on difficulty
+  boardElement.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+
+  // Disable context menu only on the board
+  boardElement.addEventListener('contextmenu', e => e.preventDefault());
+
+  // Right-click -> flag (event delegation)
+  boardElement.addEventListener('mousedown', (e) => {
+    if (e.button !== 2) return; // 2 = right mouse button
+    const tile = e.target.closest('.tile');
+    if (!tile) return;
+    e.preventDefault();
+    toggleFlag(tile);
+  });
+
+  // Build tiles + left-click reveal
+  for (let r = 0; r < rows; r++) {
+    let row = [];
+    for (let c = 0; c < cols; c++) {
+      const tile = document.createElement("div");
+      tile.id = `${r}-${c}`;
+      tile.classList.add('tile');
+      // left-click reveal stays as-is
+      tile.addEventListener("click", clickTile);
+      boardElement.append(tile);
+      row.push(tile);
     }
+    board.push(row);
+  }
 }
 
-function setFlag() {
-    const flagButton = document.getElementById("flag-button");
-    flagEnabled = !flagEnabled;
-    flagButton.classList.toggle('active');
+function toggleFlag(tile) {
+  if (gameOver) return;
+  // Don’t flag revealed tiles
+  if (tile.classList.contains("tile-clicked")) return;
 
-    console.log("Flagged tiles:", correctlyFlaggedMines, "Remaining mines:", mines);
-
+  if (tile.innerText === "") {
+    // place flag
+    tile.innerText = "🐾";
+    document.getElementById("mines").innerText = --mines; // show remaining
+    if (minesLocation.includes(tile.id)) {
+      correctlyFlaggedMines++;
+    }
+  } else if (tile.innerText === "🐾") {
+    // remove flag
+    tile.innerText = "";
+    document.getElementById("mines").innerText = ++mines; // show remaining
+    if (minesLocation.includes(tile.id)) {
+      correctlyFlaggedMines--;
+    }
+  }
 }
 
 function clickTile() {
@@ -218,23 +243,6 @@ function clickTile() {
 
         //ensures first click is not a mine
         setMines(firstClickRow, firstClickCol);
-    }
-    if(flagEnabled){ 
-        if(tile.innerText == "") {// If tile is empty, place flag
-            tile.innerText = "🐾";
-            document.getElementById("mines").innerText = --mines; // Decrease mines count
-            if(minesLocation.includes(tile.id)){
-                correctlyFlaggedMines++;
-            }
-        }
-        else if(tile.innerText == "🐾") {  // If tile has a flag, remove it
-            tile.innerText = ""; 
-            document.getElementById("mines").innerText = ++mines; // Increase mines count
-            if(minesLocation.includes(tile.id)){
-                correctlyFlaggedMines--;
-            }
-        }
-        return;
     }
     if(tile.innerText == "🐾") {
         return; // Prevent action if tile has a flag
@@ -295,7 +303,7 @@ function revealMines() {
         }
     }    
     
-    // Show the professor modal
+    // Win modal
     const modal = document.createElement('div');
     modal.className = 'modal show';
     
@@ -478,7 +486,6 @@ function restartGame() {
     numMines = config.numMines;
 
     document.getElementById("mines").innerText = mines;
-    document.getElementById("flag-button").classList.remove("active");
     
     resetTimer();
     stopTimer();
