@@ -15,6 +15,23 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+let boardListenersAttached = false;
+
+function attachBoardListeners() {
+  const boardElement = document.getElementById('board');
+  if (!boardElement || boardListenersAttached) return;
+
+  // Use ONLY contextmenu for right-click flagging
+  boardElement.addEventListener('contextmenu', (e) => {
+    const tile = e.target.closest('.tile');
+    if (!tile) return;
+    e.preventDefault();          // no browser menu
+    e.stopPropagation();         // be safe against other handlers
+    toggleFlag(tile);            // single, reliable toggle
+  });
+
+  boardListenersAttached = true;
+}
 var board = [];
 var rows = 5;
 var cols = 5;
@@ -98,6 +115,7 @@ window.onload = function() {
     });
     
     startGame();
+    attachBoardListeners();
     
     // Set initial mute button state
     const muteButton = document.getElementById('mute-button');
@@ -180,15 +198,6 @@ function createBoard() {
 
   // Disable context menu only on the board
   boardElement.addEventListener('contextmenu', e => e.preventDefault());
-
-  // Right-click -> flag (event delegation)
-  boardElement.addEventListener('mousedown', (e) => {
-    if (e.button !== 2) return; // 2 = right mouse button
-    const tile = e.target.closest('.tile');
-    if (!tile) return;
-    e.preventDefault();
-    toggleFlag(tile);
-  });
 
   // Build tiles + left-click reveal
   for (let r = 0; r < rows; r++) {
