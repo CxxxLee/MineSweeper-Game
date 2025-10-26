@@ -408,17 +408,12 @@ function checkMine(r,c){
         gameOverText.style.color = '#F8F9FA';
         gameOverText.style.marginBottom = '1rem';
     
-        const img = document.createElement('img');
-        img.src = 'assets/professor.jpg';
-        img.alt = 'Game Over';
-    
         const closeBtn = document.createElement('button');
         closeBtn.className = 'btn';
         closeBtn.innerText = 'Close';
         closeBtn.onclick = () => modal.remove();
     
         modalContent.appendChild(gameOverText);
-        modalContent.appendChild(img);
         modalContent.appendChild(closeBtn);
         modal.appendChild(modalContent);
         document.body.appendChild(modal);
