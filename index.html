@@ -12,14 +12,14 @@
         <h1>Fresno State Minesweeper</h1>
         <div id="loginStatus" class="login-status">Not logged in</div>
         <div class="btn-container">
-            <a href="game.html" class="btn" id="newGameBtn">New Game</a>
-            <div class="secondary-btn-container">
-                <a href="help.html" class="btn" id="instructionsBtn">Instructions</a>
-                <a href="leaderboard.html" class="btn" id="highScoresBtn">High Scores</a>
-                <a href="contact.html" class="btn" id="contactBtn">Contact</a>
-                <a href="login.html" class="btn" id="loginBtn">Login</a>
-                <a href="signup.html" class="btn" id="signupBtn">Sign Up</a>
-                <button class="btn" id="logoutBtn" style="display: none;">Logout</button>
+            <a href="game.html" class="btn nextbtn" id="newGameBtn">New Game</a>
+            <div class="secondary-btn-container" id="secondaryBtns">
+                <a href="help.html" class="btn nextbtn" id="instructionsBtn">Instructions</a>
+                <a href="leaderboard.html" class="btn nextbtn" id="highScoresBtn">High Scores</a>
+                <a href="contact.html" class="btn nextbtn" id="contactBtn">Contact</a>
+                <a href="login.html" class="btn nextbtn" id="loginBtn">Login</a>
+                <a href="signup.html" class="btn nextbtn" id="signupBtn">Sign Up</a>
+                <button class="btn nextbtn" id="logoutBtn" style="display: none;">Logout</button>
             </div>
         </div>
     </div>
@@ -61,5 +61,7 @@
             }
         });
     </script>
+    <audio id="ButtonSounds" src="assets/Next.wav" preload="auto"></audio>
+    <script src="js/btnSounds.js" defer></script>
 </body>
 </html>

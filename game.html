@@ -29,7 +29,7 @@
                             <option value="hard">Hard (24x24, 99 mines)</option>
                         </select>
                     </div>
-                    <button onclick="showThemes()" class="btn">Themes</button>
+                    <button onclick="showThemes()" class="btn" data-sound="menu.wav">Themes</button>
                 </div>
                 <div class="game-info">
                     Mines: <span id="mines">0</span>
@@ -41,12 +41,12 @@
             <div id="board"></div>
             <div class="game-nav">
                 <div class="game-controls">
-                    <button id="restart-button" class="btn">Restart</button>
-                    <button id="mute-button" class="btn" onclick="toggleMute()"></button>
+                    <button id="restart-button" class="btn" data-sound="click.wav">Restart</button>
+                    <button id="mute-button" class="btn" onclick="toggleMute() " data-sound="click.wav"></button>
                 </div>
                 <div class="nav-buttons">
-                    <button onclick="showInstructions()" class="btn">Instructions</button>
-                    <a href="index.html" class="btn">Menu</a>
+                    <button onclick="showInstructions()" class="btn" data-sound="menu.wav">Instructions</button>
+                    <a href="index.html" class="btn" data-sound="back.wav">Menu</a>
                 </div>
             </div>
         </div>
@@ -62,7 +62,7 @@
                     <li>Use logic to deduce where mines are located.</li>
                     <li>Clear all non-mine cells to win!</li>
                 </ul>
-                <button onclick="closeInstructions()" class="btn">Close</button>
+                <button onclick="closeInstructions()" class="btn" data-sound="back.wav">Close</button>
             </div>
         </div>
 
@@ -87,7 +87,7 @@
                         </select>
                     </div>
                 </div>
-                <button onclick="closeThemes()" class="btn">Close</button>
+                <button onclick="closeThemes()" class="btn" data-sound="back.wav">Close</button>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
@@ -101,6 +101,8 @@
         <audio id="GameOverAud">
             <source src="assets/Game_Over.mp3" type="audio/mp3">
         </audio>
+        <audio id="ButtonSounds" preload="auto"></audio>
+        <script src="js/btnSounds.js" defer></script>
     </body>
     
 </html>
