@@ -42,7 +42,6 @@
             <div class="game-nav">
                 <div class="game-controls">
                     <button id="restart-button" class="btn" data-sound="click.wav">Restart</button>
-                    <button id="mute-button" class="btn" onclick="toggleMute() " data-sound="click.wav"></button>
                 </div>
                 <div class="nav-buttons">
                     <button onclick="showInstructions()" class="btn" data-sound="menu.wav">Instructions</button>
@@ -92,9 +91,7 @@
         </div>
         <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
         <!-- Add audio elements -->
-        <audio id="gameMusic" loop>
-            <source src="assets/Dearly_Beloved.mp3" type="audio/mp3">
-        </audio>
+
         <audio id="winnerSound">
             <source src="assets/winner.mp3" type="audio/mp3">
         </audio>
@@ -103,6 +100,8 @@
         </audio>
         <audio id="ButtonSounds" preload="auto"></audio>
         <script src="js/btnSounds.js" defer></script>
+        <button id="muteBtn" class="btn">🔊</button>
+        <script src="js/gameMusic.js"></script>
     </body>
     
 </html>

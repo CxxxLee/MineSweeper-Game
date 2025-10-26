@@ -1,19 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Start playing background music when page loads
-    const gameMusic = document.getElementById('gameMusic');
-    if (gameMusic && !isMuted) {
-        gameMusic.volume = 1.0;
-        const playPromise = gameMusic.play();
-        
-        if (playPromise !== undefined) {
-            playPromise.catch(error => {
-                console.log("Auto-play failed:", error);
-                // Many browsers require user interaction before playing audio
-                // The music will start when they click restart or interact with the game
-            });
-        }
-    }
-});
+
 
 let boardListenersAttached = false;
 
@@ -46,7 +31,6 @@ let timerInterval = null;
 let elapsedTime = 0;
 let correctlyFlaggedMines = 0;
 let isMuted = false;
-const gameMusic = document.getElementById('gameMusic');
 
 // Add difficulty configurations
 const difficulties = {
@@ -100,12 +84,6 @@ window.onload = function() {
     const boardStyleSelect = document.getElementById('boardStyle');
     const colorThemeSelect = document.getElementById('colorTheme');
     
-    gameMusic.volume = 0.5; // Set volume to 50%
-    gameMusic.play().catch(error => {
-        console.log("Audio autoplay failed:", error);
-        // Most browsers require user interaction before playing audio
-    });
-    
     difficultySelect.addEventListener('change', changeDifficulty);
     boardStyleSelect.addEventListener('change', function() {
         changeBoardStyle();
@@ -117,9 +95,6 @@ window.onload = function() {
     startGame();
     attachBoardListeners();
     
-    // Set initial mute button state
-    const muteButton = document.getElementById('mute-button');
-    muteButton.textContent = '🔊';
 }
 
 function setMines(excludeRow, excludeCol) {
@@ -148,30 +123,7 @@ function setMines(excludeRow, excludeCol) {
 }
 
 function startGame() {
-    // Initialize game music first thing
-    if (!isMuted) {
-        const gameMusic = document.getElementById('gameMusic');
-        if (gameMusic) {
-            gameMusic.currentTime = 0;
-            // Force unmute and set volume
-            gameMusic.muted = false;
-            gameMusic.volume = 1.0;
-            const playPromise = gameMusic.play();
-            
-            if (playPromise !== undefined) {
-                playPromise.catch(error => {
-                    console.log("Auto-play failed:", error);
-                });
-            }
-        }
-    }
-    
-    // Initialize mute button state
-    const muteButton = document.getElementById('mute-button');
-    if (muteButton) {
-        muteButton.textContent = isMuted ? '🔇' : '🔊';
-    }
-    
+  
     // Rest of your existing startGame code...
     initializeUI();
     createBoard();
@@ -274,10 +226,7 @@ function clickTile() {
 }
 
 function revealMines() {
-    // Stop background music first
-    gameMusic.pause();
-    gameMusic.currentTime = 0;
-    
+
     gameOver = true;
     stopTimer();
     updateGameStats('loss');
@@ -299,6 +248,8 @@ function revealMines() {
     }    
     
     // Game Over Modal
+    if (window.BGM) BGM.pause(); // pause background music
+
     const modal = document.createElement('div');
     modal.className = 'modal show';
     
@@ -343,6 +294,8 @@ function revealMines() {
                 GameOverAud.currentTime = 0;
             }
             modal.remove();
+            if (window.BGM) BGM.play(); // resume background music
+
         };
     }
 }
@@ -397,10 +350,7 @@ function checkMine(r,c){
     }   
     // Adjusted win condition check
     if (tilesClicked == (rows * cols) - numMines) {
-        // Stop background music
-        gameMusic.pause();
-        gameMusic.currentTime = 0;
-        
+        if (window.BGM) BGM.pause(); // pause background music
         document.getElementById("mines").innerText = "Cleared";
         gameOver = true;
         stopTimer();
@@ -435,8 +385,12 @@ function checkMine(r,c){
         const closeBtn = document.createElement('button');
         closeBtn.className = 'btn';
         closeBtn.innerText = 'Close';
-        closeBtn.onclick = () => modal.remove();
-    
+        closeBtn.onclick = () => {
+             modal.remove();
+             if (window.BGM) BGM.play();
+        }
+        
+
         modalContent.appendChild(gameOverText);
         modalContent.appendChild(closeBtn);
         modal.appendChild(modalContent);
@@ -507,13 +461,6 @@ function restartGame() {
     stopTimer();
     startGame();
     
-    // Restart music if not muted
-    if (!isMuted) {
-        gameMusic.currentTime = 0;
-        gameMusic.play().catch(error => {
-            console.log("Audio autoplay failed:", error);
-        });
-    }
 }
 
 function showInstructions() {
@@ -617,22 +564,6 @@ function resetTimer() {
     stopTimer();
     elapsedTime = 0;
     updateTimerDisplay();
-}
-
-function toggleMute() {
-    isMuted = !isMuted;
-    const muteButton = document.getElementById('mute-button');
-    
-    if (isMuted) {
-        gameMusic.pause();
-        muteButton.textContent = '🔇';
-    } else {
-        // Only play if game is not over
-        if (!gameOver) {
-            gameMusic.play();
-        }
-        muteButton.textContent = '🔊';
-    }
 }
 
 
