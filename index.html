@@ -9,7 +9,7 @@
 <body>
 
     <div class="main-menu">
-        <h1>Fresno State Minesweeper</h1>
+        <h1>Minesweeper</h1>
         <div id="loginStatus" class="login-status">Not logged in</div>
         <div class="btn-container">
             <a href="game.html" class="btn nextbtn" id="newGameBtn">New Game</a>
@@ -66,5 +66,9 @@
     <audio id="ButtonSounds" src="assets/Next.wav" preload="auto"></audio>
     <script src="js/btnSounds.js" defer></script>
     <script src="js/gameMusic.js"></script>
+    <video autoplay muted loop playsinline id="bgVideo" data-resume-id="site-bgv">
+        <source src="assets/KHbg.mp4" type="video/mp4">
+    </video>
+    <script src="js/videoResume.js" defer></script>
 </body>
 </html>

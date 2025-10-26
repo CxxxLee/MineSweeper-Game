@@ -92,4 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
         BGM.toggleMute();
         btn.textContent = window.__bgm?.muted ? '🔇' : '🔊';
     });
+    if(window.__bgm.muted)
+        btn.textContent = '🔇';
 });
