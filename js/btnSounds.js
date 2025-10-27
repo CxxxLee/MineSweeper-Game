@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   audio.muted = false;
 
   container.addEventListener('click', (e) => {
-    const el = e.target.closest('a.btn, button.btn, a.nextbtn, button.nextbtn');
+    const el = e.target.closest('a.btn, button.btn, a.nextbtn, button.nextbtn, a.regBtn, button.regBtn');
     if (!el) return;
 
     // choose sound from data attribute
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-const buttons = document.querySelectorAll('.btn.nextbtn');
+const buttons = document.querySelectorAll('.btn.nextbtn, .regBtn');
 const sound = document.getElementById('hoverSound');
 
 buttons.forEach(button => {

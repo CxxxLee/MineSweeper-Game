@@ -612,14 +612,30 @@ h1 {
 }
 
 .modal-content {
-    background-color: rgba(0, 44, 118, 0.8);
-    color: #F8F9FA;
+    background: linear-gradient(
+    0deg,
+    #1d1df7 15%,
+    #0301a1 40%,
+    #060058 100%
+    );
+    color: #0078f0;
     margin: 15% auto;
     padding: 2rem;
     width: 80%;
     max-width: 500px;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+.modal-content h1{
+    color:white;
+    text-decoration: none;
+    background: linear-gradient(
+    0deg,
+    #1d1df7 15%,
+    #0301a1 40%,
+    #060058 100%
+    );
+    text-align: center;
 }
 
 .game-over-modal {
@@ -677,7 +693,7 @@ h1 {
 }
 
 .difficulty-selector select option {
-    background-color: #002C76;
+    background-color: #fd0000;
     color: #F8F9FA;
 }
 
@@ -740,7 +756,7 @@ h1 {
 
 .theme-selector select {
     width: 100%;
-    background-color: #C41230;
+    background-color: #000000;
     color: #F8F9FA;
     padding: 0.5rem;
     border: none;
@@ -750,13 +766,13 @@ h1 {
 }
 
 .theme-selector select:hover {
-    background-color: #F8F9FA;
-    color: #C41230;
+    background-color: rgb(255, 0, 0);
+    color: #ffffff;
 }
 
 .theme-selector select option {
-    background-color: #002C76;
-    color: #F8F9FA;
+    background-color: rgb(255, 0, 0);
+    color: #ffffff;
 }
 
 .board-fresnoState {

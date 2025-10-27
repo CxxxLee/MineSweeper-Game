@@ -266,7 +266,7 @@ function revealMines() {
     img.alt = 'Game Over';
     
     const closeBtn = document.createElement('button');
-    closeBtn.className = 'btn';
+    closeBtn.className = 'regBtn';
     closeBtn.innerText = 'Close';
 
     
@@ -377,13 +377,14 @@ function checkMine(r,c){
         const modalContent = document.createElement('div');
         modalContent.className = 'modal-content game-over-modal';
     
-        const gameOverText = document.createElement('h1');
+        const gameOverText = document.createElement('p');
         gameOverText.innerText = 'You Win!';
         gameOverText.style.color = '#F8F9FA';
+        gameOverText.style.fontSize = '30px';
         gameOverText.style.marginBottom = '1rem';
     
         const closeBtn = document.createElement('button');
-        closeBtn.className = 'btn';
+        closeBtn.className = 'regBtn';
         closeBtn.innerText = 'Close';
         closeBtn.onclick = () => {
              modal.remove();
