@@ -15,7 +15,10 @@ if ($username === '' || $email === '' || $password === '') {
     echo json_encode(['success' => false, 'message' => 'Missing required fields']);
     exit;
 }
-
+if (empty($_POST['password']) || $_POST['password'] !== ($_POST['confirmPassword'] ?? '')) {
+    echo json_encode(['success' => false, 'message' => 'Passwords do not match.']);
+    exit;
+}
 $hash = password_hash($password, PASSWORD_DEFAULT);
 
 try {
