@@ -32,8 +32,7 @@
         fetch('php/check_login.php')
             .then(response => response.json())
             .then(data => {
-                const helpBtn = document.getElementById('instructionsBtn');
-                const leaderboardBtn = document.getElementById('highScoresBtn')
+                const gameBtn = document.getElementById('newGameBtn');
                 const loginStatus = document.getElementById('loginStatus');
                 const loginBtn = document.getElementById('loginBtn');
                 const signupBtn = document.getElementById('signupBtn');
@@ -44,7 +43,7 @@
                     loginBtn.style.display = 'none';
                     signupBtn.style.display = 'none';
                     logoutBtn.style.display = 'inline-block';
-                    logoutBtn.classlist.add = "lgActive";
+                    gameBtn.classList.add("lgActive");
 
                 } else {
                     loginStatus.innerText = 'Not logged in! \nPlease sign up or log in below to save game data!';

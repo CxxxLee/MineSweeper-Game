@@ -136,8 +136,14 @@ h1 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-.lgActive{
+#logoutBtn{
     width:100%;
+}
+
+.lgActive{
+    position:relative;
+    bottom:-75px;
+    width: 100%;
 }
 #newGameBtn {
     font-size: 1.5rem;
