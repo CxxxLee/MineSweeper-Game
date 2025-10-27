@@ -153,6 +153,28 @@ h1 {
     width: 80%; 
 }
 
+.regBtn{
+    border-radius: 20px;
+    color:rgb(255, 255, 255);
+    background-color:black;
+    opacity: 70%;
+    border-top: 1px solid white;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    margin: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    display: inline-block;
+}
+
+.regBtn:hover{
+    background:red;
+    border: 5px solid rgba(141, 0, 0, 0.719);
+
+}
+
 @keyframes pulse {
     0% {
         transform: scale(1);
@@ -464,7 +486,6 @@ h1 {
 #restart-button {
     padding: 0.5rem 1rem;
     font-size: 1.2rem;
-    background-color: #C41230;
 }
 
 .game-nav {
@@ -639,18 +660,20 @@ h1 {
 }
 
 .difficulty-selector select {
-    background-color: #C41230;
+    position:relative;
+    top:4px;
     color: #F8F9FA;
+    width: 10px;
     padding: 0.5rem;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px;
     cursor: pointer;
     font-family: 'JetBrains Mono', Arial, sans-serif;
 }
 
 .difficulty-selector select:hover {
-    background-color: #F8F9FA;
-    color: #C41230;
+    background-color: red;
+    color: #ffffff;
 }
 
 .difficulty-selector select option {

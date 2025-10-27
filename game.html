@@ -21,15 +21,15 @@
         <div class="game-container">
             <div class="game-header">
                 <div class="settings-row">
-                    <div class="difficulty-selector">
-                        <select id="difficulty" class="btn">
+                    <div class="difficulty-selector" >
+                        <select id="difficulty" class="regBtn">
                             <option value="superEasy" selected>Super Easy (5x5, 3 mines)</option>
                             <option value="easy">Easy (8x8, 10 mines)</option>
                             <option value="medium">Medium (16x16, 40 mines)</option>
                             <option value="hard">Hard (24x24, 99 mines)</option>
                         </select>
                     </div>
-                    <button onclick="showThemes()" class="btn" data-sound="menu.wav">Themes</button>
+                    <button onclick="showThemes()" class="regBtn" data-sound="menu.wav">Themes</button>
                 </div>
                 <div class="game-info">
                     Mines: <span id="mines">0</span>
@@ -41,11 +41,11 @@
             <div id="board"></div>
             <div class="game-nav">
                 <div class="game-controls">
-                    <button id="restart-button" class="btn" data-sound="next.wav">Restart</button>
+                    <button id="restart-button" class="regBtn" data-sound="next.wav">Restart</button>
                 </div>
                 <div class="nav-buttons">
-                    <button onclick="showInstructions()" class="btn" data-sound="menu.wav">Instructions</button>
-                    <a href="index.html" class="btn" data-sound="back.wav">Menu</a>
+                    <button onclick="showInstructions()" class="regBtn" data-sound="menu.wav">Instructions</button>
+                    <a href="index.html" class="regBtn" data-sound="back.wav">Menu</a>
                 </div>
             </div>
         </div>
@@ -61,7 +61,7 @@
                     <li>Use logic to deduce where mines are located.</li>
                     <li>Clear all non-mine cells to win!</li>
                 </ul>
-                <button onclick="closeInstructions()" class="btn" data-sound="back.wav">Close</button>
+                <button onclick="closeInstructions()" class="regBtn" data-sound="back.wav">Close</button>
             </div>
         </div>
 
@@ -71,7 +71,7 @@
                 <div class="theme-options">
                     <div class="theme-group">
                         <h2>Board Style</h2>
-                        <select id="boardStyle" class="btn theme-select">
+                        <select id="boardStyle" class="regBtn theme-select">
                             <option value="fresnoState">Fresno State</option>
                             <option value="candy">Sweet Candy</option>
                             <option value="radioactive">Radioactive</option>
@@ -79,14 +79,14 @@
                     </div>
                     <div class="theme-group">
                         <h2>Color Theme</h2>
-                        <select id="colorTheme" class="btn theme-select">
+                        <select id="colorTheme" class="regBtn theme-select">
                             <option value="fresnoState">Fresno State</option>
                             <option value="candyland">Candy Paradise</option>
                             <option value="radioactive">Toxic Waste</option>
                         </select>
                     </div>
                 </div>
-                <button onclick="closeThemes()" class="btn" data-sound="back.wav">Close</button>
+                <button onclick="closeThemes()" class="regBtn" data-sound="back.wav">Close</button>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
