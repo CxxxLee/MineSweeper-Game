@@ -40,8 +40,8 @@ const difficulties = {
     hard: { rows: 24, cols: 24, mines: 99, numMines: 99 }
 };
 
-let currentBoardStyle = 'fresnoState';
-let currentColorTheme = 'fresnoState';
+let currentBoardStyle = 'ventus';
+let currentColorTheme = 'ventus';
 
 // Add this function at the top level of game.js
 async function updateGameStats(result) {
@@ -492,20 +492,9 @@ function changeBoardStyle() {
     
     // Remove old style and shooting stars
     board.classList.remove(`board-${currentBoardStyle}`);
-    const oldStars = board.querySelectorAll('.shooting-star');
-    oldStars.forEach(star => star.remove());
     
     // Add new style
     board.classList.add(`board-${newStyle}`);
-    
-    // Add new shooting stars if cosmic theme
-    if (newStyle === 'cosmic') {
-        for (let i = 0; i < 30; i++) {
-            const star = document.createElement('div');
-            star.classList.add('shooting-star');
-            board.appendChild(star);
-        }
-    }
     
     currentBoardStyle = newStyle;
 }

@@ -486,17 +486,21 @@ h1 {
     width: 200px;
 }
 
-/* Game-specific styles */
+/* Game-specific styles, default board theme is ventus */
 .game-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 1rem;
-    background-color: rgba(0, 44, 118, 0.8);
+    background-image: url('../assets/ventus.jpg');
+    background-color: rgb(255, 255, 255);
     border-radius: 10px;
+    background-repeat: no-repeat;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-    width: min(90%, 600px);
+    width: 660px;
+    opacity: 80%;
     margin: 1rem auto;
+    height:810px;
 }
 .game-info {
   display: flex;
@@ -849,117 +853,65 @@ h1 {
     color: #ffffff;
 }
 
-.board-fresnoState {
-    background-color: #e0e0e0;
-    border: 3px solid #4a4a4a;
+.board-ventus {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 25px);
+    border-top: 1px solid #d0d0d0;
+    border-left: 1px solid #d0d0d0;
+    border: 3px solid #4a4a4a; 
 }
 
-.board-candy {
+.board-aqua {
     background: repeating-linear-gradient(
         45deg,
-        #FF69B4,
-        #FF69B4 10px,
-        #FFB6C1 10px,
-        #FFB6C1 20px
+        #4e65e7,
+        #1eaee7 10px,
+        #1749eb 10px,
+        #0207ff 20px
     );
-    border: 8px solid #FF1493;
+    border: 8px solid #1100ff;
     border-radius: 15px;
-    box-shadow: 0 0 15px rgba(255, 105, 180, 0.6);
+    box-shadow: 0 0 15px rgba(7, 1, 85, 0.6);
 }
 
-.theme-fresnoState {
-    background: linear-gradient(135deg, #C41230, #002C76, #F8F9FA);
+.theme-aqua .game-container{
+    background-image: url('../assets/aqua.jpg');
+    background-color: rgb(255, 255, 255);
+    background-repeat: no-repeat;
+    background-position: 40% center;
+    opacity: 80%;
 }
 
-.theme-candyland {
-    background: linear-gradient(
-        45deg,
-        #FF69B4,
-        #FFB6C1,
-        #87CEEB,
-        #98FB98,
-        #DDA0DD
-    );
-    background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
-}
-
-/* Add these new styles for candyland theme UI elements */
-.theme-candyland .btn,
-.theme-candyland select,
-.theme-candyland .modal-content,
-.theme-candyland .game-container,
-.theme-candyland .leaderboard,
-.theme-candyland .login,
-.theme-candyland .signup,
-.theme-candyland .contact,
-.theme-candyland .instructions {
-    background-color: rgba(255, 105, 180, 0.8);
-    border: 2px solid #FF1493;
-    box-shadow: 0 0 15px rgba(255, 105, 180, 0.4);
-}
-
-.theme-candyland .btn:hover,
-.theme-candyland select:hover {
-    background-color: #FFB6C1;
-    color: #FF1493;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(255, 105, 180, 0.6);
-}
-
-.theme-candyland h1,
-.theme-candyland h2 {
-    color: #FF1493;
-    text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.5);
-}
-
-.theme-candyland .input-group input {
-    background-color: rgba(255, 182, 193, 0.2);
-    border: 1px solid #FF69B4;
-}
-
-.theme-candyland .input-group input:focus {
-    background-color: rgba(255, 182, 193, 0.3);
-    box-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
-}
-
-.theme-candyland .leaderboard-table th {
-    background-color: rgba(255, 105, 180, 0.9);
-}
-
-.theme-candyland .leaderboard-table tr:hover {
-    background-color: rgba(255, 182, 193, 0.3);
-}
 
 /* Tile styles for each board theme */
-.board-fresnoState .tile {
+.board-ventus .tile {
     background-color: #f0f0f0;
-    border: 1px solid #d0d0d0;
+    border-right: 1px solid #000000;
+    border-bottom: 1px solid #000000;
 }
 
-.board-fresnoState .tile:hover {
-    background-color: #d0d0d0;
-    border: 1px solid #a0a0a0;
-}
-
-.board-fresnoState .tile-clicked {
+.board-ventus .tile:hover {
     background-color: #d0d0d0;
 }
 
-.board-candy .tile {
+.board-ventus .tile-clicked {
+    background-color: #d0d0d0;
+}
+
+.board-aqua .tile {
     background-color: #fff;
-    border: 2px solid #FF69B4;
+    border: 2px solid #1446ce;
     border-radius: 5px;
-    box-shadow: 0 0 5px rgba(255, 105, 180, 0.3);
+    box-shadow: 0 0 5px rgba(3, 16, 129, 0.3);
 }
 
-.board-candy .tile:hover {
-    background-color: #FFE4E1;
+.board-aqua .tile:hover {
+    background-color: #186ff1;
     transform: scale(1.05);
 }
 
-.board-candy .tile-clicked {
-    background-color: #FFB6C1;
+.board-aqua .tile-clicked {
+    background-color: #8fb5fa;
 }
 
 /* Animations */
@@ -1016,261 +968,65 @@ h1 {
     display: none;
 }
 
-.theme-cyberpunk .btn {
-    background: transparent;
-    border: 2px solid #0f0;
-    color: #0f0;
-    text-shadow: 0 0 5px #0f0;
-    box-shadow: inset 0 0 10px #0f0;
-    position: relative;
-    overflow: hidden;
-}
-
-.theme-cyberpunk .btn:hover {
-    background: #0f0;
-    color: #000;
-    text-shadow: none;
-}
-
-.theme-cyberpunk .btn::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    width: 5px;
-    height: 5px;
-    background: #0f0;
-    box-shadow: 0 0 10px #0f0;
-    animation: cyberpunkScan 2s linear infinite;
-}
-
-.theme-cyberpunk .modal-content {
-    background: rgba(0, 0, 0, 0.9);
-    border: 2px solid #0f0;
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
-    position: relative;
-    overflow: hidden;
-}
-
-.theme-cyberpunk .modal-content::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 2px;
-    background: #0f0;
-    animation: scanline 2s linear infinite;
-}
-
-.theme-cyberpunk #board {
-    border: 2px solid #0f0;
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
-    background: rgba(0, 0, 0, 0.8);
-}
-
-.theme-cyberpunk .tile {
-    border-color: #0f0;
-    background: rgba(0, 20, 0, 0.9);
-    color: #0f0;
-    text-shadow: 0 0 5px #0f0;
-    position: relative;
-}
-
-.theme-cyberpunk .tile:hover {
-    background: rgba(0, 255, 0, 0.2);
-}
-
-.theme-cyberpunk .tile-clicked {
-    background: rgba(0, 255, 0, 0.5);
-}
-
-/* New animations for cyberpunk theme */
-@keyframes matrixRain {
-    0% {
-        transform: translateY(-66.67%);
-    }
-    100% {
-        transform: translateY(0);
-    }
-}
-
-@keyframes cyberpunkScan {
-    0% {
-        transform: translate(-50%, -50%) rotate(0deg);
-    }
-    100% {
-        transform: translate(200px, 200px) rotate(360deg);
-    }
-}
-
-@keyframes scanline {
-    0% {
-        left: -100%;
-    }
-    100% {
-        left: 100%;
-    }
-}
-
-.theme-cyberpunk .x1 { color: #0ff; text-shadow: 0 0 5px #0ff; }
-.theme-cyberpunk .x2 { color: #0f0; text-shadow: 0 0 5px #0f0; }
-.theme-cyberpunk .x3 { color: #f0f; text-shadow: 0 0 5px #f0f; }
-.theme-cyberpunk .x4 { color: #ff0; text-shadow: 0 0 5px #ff0; }
-.theme-cyberpunk .x5 { color: #f00; text-shadow: 0 0 5px #f00; }
-.theme-cyberpunk .x6 { color: #0ff; text-shadow: 0 0 5px #0ff; }
-.theme-cyberpunk .x7 { color: #0f0; text-shadow: 0 0 5px #0f0; }
-.theme-cyberpunk .x8 { color: #f0f; text-shadow: 0 0 5px #f0f; }
-
-.board-neon .x1 { color: #0ff; text-shadow: 0 0 5px #0ff; }
-.board-neon .x2 { color: #0f0; text-shadow: 0 0 5px #0f0; }
-.board-neon .x3 { color: #f0f; text-shadow: 0 0 5px #f0f; }
-.board-neon .x4 { color: #ff0; text-shadow: 0 0 5px #ff0; }
-.board-neon .x5 { color: #f00; text-shadow: 0 0 5px #f00; }
-.board-neon .x6 { color: #0ff; text-shadow: 0 0 5px #0ff; }
-.board-neon .x7 { color: #0f0; text-shadow: 0 0 5px #0f0; }
-.board-neon .x8 { color: #f0f; text-shadow: 0 0 5px #f0f; }
-
-/* Replace the board-atlantis styles with board-radioactive */
-.board-radioactive {
+/* Replace the board-atlantis styles with board-terra */
+.board-terra {
     background: repeating-linear-gradient(
         45deg,
-        #000000,
-        #000000 10px,
-        #ffdf00 10px,
-        #ffdf00 20px
+        #fffb00,
+        #ffbc04 10px,
+        #c96c01 10px,
+        #421c02 20px
     );
-    border: 8px solid #39ff14;
+    border: 8px solid #2c1201;
     box-shadow: 
-        0 0 30px #39ff14,
-        inset 0 0 20px rgba(57, 255, 20, 0.5);
+        0 0 30px #693b07,
+        inset 0 0 20px rgba(95, 41, 5, 0.5);
     position: relative;
     overflow: hidden;
 }
 
-/* Hazard warning stripes animation */
-.board-radioactive::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: repeating-linear-gradient(
-        45deg,
-        rgba(0, 0, 0, 0.8),
-        rgba(0, 0, 0, 0.8) 10px,
-        transparent 10px,
-        transparent 20px
-    );
-    animation: toxicPulse 2s infinite linear;
-    pointer-events: none;
-    z-index: 1;
-}
-
-/* Tile styling for radioactive theme */
-.board-radioactive .tile {
-    background: rgba(0, 0, 0, 0.8);
-    border: 2px solid #39ff14;
-    color: #39ff14;
-    text-shadow: 0 0 5px #39ff14;
+/* Tile styling for terra theme */
+.board-terra .tile {
+    background: rgba(165, 75, 1, 0.8);
+    border: 2px solid #8d5514;
+    color: #7e4619;
+    text-shadow: 0 0 5px #fd9903;
     transition: all 0.3s ease;
     position: relative;
     z-index: 2;
 }
 
-.board-radioactive .tile:hover {
-    background: rgba(57, 255, 20, 0.2);
+.board-terra .tile:hover {
+    background: rgba(252, 92, 0, 0.555);
     transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(57, 255, 20, 0.5);
+    box-shadow: 0 0 15px rgb(163, 110, 41);
 }
 
-.board-radioactive .tile-clicked {
-    background: rgba(0, 0, 0, 0.9);
-    border-color: rgba(57, 255, 20, 0.2);
-    color: rgba(57, 255, 20, 0.8);
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
+.board-terra .tile-clicked {
+    background: rgba(255, 238, 0, 0.9);
+    border-color: rgba(255, 181, 20, 0.733);
+    color: rgba(226, 167, 56, 0.8);
+    box-shadow: inset 0 0 10px rgba(243, 111, 2, 0.8);
 }
 
-/* Update Number colors for Radioactive board */
-.board-radioactive .x1 { color: #ff9999; text-shadow: 0 0 8px #ff9999; }
-.board-radioactive .x2 { color: #7fff7f; text-shadow: 0 0 8px #7fff7f; }
-.board-radioactive .x3 { color: #ffff00; text-shadow: 0 0 8px #ffff00; }
-.board-radioactive .x4 { color: #ff99ff; text-shadow: 0 0 8px #ff99ff; }
-.board-radioactive .x5 { color: #99ffff; text-shadow: 0 0 8px #99ffff; }
-.board-radioactive .x6 { color: #ffcc99; text-shadow: 0 0 8px #ffcc99; }
-.board-radioactive .x7 { color: #ffffff; text-shadow: 0 0 8px #ffffff; }
-.board-radioactive .x8 { color: #ff4444; text-shadow: 0 0 8px #ff4444; }
+/* Update Number colors for terra board */
+.board-terra .x1 { color: #804d4d; text-shadow: 0 0 8px #ff9999; }
+.board-terra .x2 { color: #000000; text-shadow: 0 0 8px #7fff7f; }
+.board-terra .x3 { color: #001aff; text-shadow: 0 0 8px #ffff00; }
+.board-terra .x4 { color: #ff99ff; text-shadow: 0 0 8px #ff99ff; }
+.board-terra .x5 { color: #64aaaa; text-shadow: 0 0 8px #99ffff; }
+.board-terra .x6 { color: #ffcc99; text-shadow: 0 0 8px #ffcc99; }
+.board-terra .x7 { color: #ffffff; text-shadow: 0 0 8px #ffffff; }
+.board-terra .x8 { color: #ff4444; text-shadow: 0 0 8px #ff4444; }
 
-/* Replace theme-atlantis with theme-radioactive */
-.theme-radioactive {
-    background: linear-gradient(180deg,
-        #000000,
-        #001800,
-        #002400,
-        #000000
-    );
-    position: relative;
-    overflow: hidden;
-}
+/* Replace theme-atlantis with theme-terra */
+.theme-terra .game-container{
+    background-image: url('../assets/Terra.jpg');
+    background-repeat: no-repeat;
+    background-position: 35% center;
+    background-size: cover;
+    opacity: 80%;
 
-/* Enhanced toxic waste effect */
-.theme-radioactive::before {
-    content: '';
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: 
-        radial-gradient(circle at 30% 40%, rgba(57, 255, 20, 0.15) 0%, transparent 60%),
-        radial-gradient(circle at 70% 60%, rgba(255, 223, 0, 0.15) 0%, transparent 60%),
-        repeating-radial-gradient(circle at 50% 50%, 
-            rgba(57, 255, 20, 0.1) 0%, 
-            rgba(57, 255, 20, 0.1) 10px, 
-            transparent 10px, 
-            transparent 20px
-        );
-    animation: toxicGlow 8s infinite alternate;
-    pointer-events: none;
-    z-index: 0;
-}
-
-/* Enhanced game container styling */
-.theme-radioactive .game-container {
-    background: rgba(0, 0, 0, 0.95);
-    border: 3px solid #39ff14;
-    box-shadow: 
-        0 0 30px rgba(57, 255, 20, 0.4),
-        inset 0 0 50px rgba(57, 255, 20, 0.2);
-    position: relative;
-    z-index: 1;
-}
-
-/* Enhanced button styling */
-.theme-radioactive .btn {
-    background: rgba(0, 0, 0, 0.9);
-    border: 2px solid #39ff14;
-    color: #39ff14;
-    text-shadow: 0 0 8px #39ff14;
-    box-shadow: 
-        0 0 15px rgba(57, 255, 20, 0.3),
-        inset 0 0 10px rgba(57, 255, 20, 0.2);
-    transition: all 0.3s ease;
-}
-
-.theme-radioactive .btn:hover {
-    background: rgba(57, 255, 20, 0.2);
-    transform: translateY(-2px) scale(1.05);
-    box-shadow: 
-        0 0 20px rgba(57, 255, 20, 0.5),
-        inset 0 0 15px rgba(57, 255, 20, 0.3);
-    text-shadow: 0 0 12px #39ff14;
-}
-
-/* Add pulsing text effect */
-.theme-radioactive .game-header {
-    color: #39ff14;
-    text-shadow: 0 0 10px #39ff14;
-    animation: textPulse 2s infinite alternate;
 }
 
 /* New animation for text pulsing */
@@ -1290,46 +1046,6 @@ h1 {
         opacity: 0.7; 
         transform: scale(1.2);
         filter: hue-rotate(30deg);
-    }
-}
-
-/* Running dog animations */
-.running-dog-top, .running-dog-bottom {
-    position: fixed;
-    width: 100px;
-    height: 100px;
-    z-index: 1000;
-}
-
-.running-dog-top {
-    top: 20px;
-    animation: runRight 8s linear infinite;
-}
-
-.running-dog-bottom {
-    bottom: 20px;
-    animation: runLeft 8s linear infinite;
-}
-
-@keyframes runRight {
-    from {
-        left: -100px;
-        transform: scaleX(1);
-    }
-    to {
-        left: 100%;
-        transform: scaleX(1);
-    }
-}
-
-@keyframes runLeft {
-    from {
-        right: -100px;
-        transform: scaleX(-1);
-    }
-    to {
-        right: 100%;
-        transform: scaleX(-1);
     }
 }
 
