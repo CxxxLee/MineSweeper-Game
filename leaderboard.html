@@ -11,7 +11,7 @@
     <div class="leaderboard">
         <h1>Leaderboard</h1>
         <div class="leaderboard-controls">
-            <select id="sortBy" class="btn">
+            <select id="sortBy" class="regBtn">
                 <option value="difficulty">Difficulty</option>
                 <option value="games_won">Games Won</option>
                 <option value="time_taken">Best Time</option>
@@ -30,13 +30,18 @@
                 <!-- Data will be populated by JavaScript -->
             </tbody>
         </table>
-        <a href="index.html" class="btn" data-sound="back.wav">Back to Menu</a>
+        <a href="index.html" class="regBtn" data-sound="back.wav">Back to Menu</a>
     </div>
-    <button id="muteBtn" class="btn">🔊</button>
+    <button id="muteBtn" class="regBtn">🔊</button>
 
     <script src="js/leaderboard.js"></script>
+
+    <!-- button sounds -->
     <audio id="ButtonSounds" preload="auto"></audio>
+    <audio src="assets/click.wav" id="hoverSound"></audio>
     <script src="js/btnSounds.js" defer></script>
+
+    <!-- game music -->
     <script src="js/gameMusic.js"></script>
     <video autoplay muted loop playsinline id="bgVideo" data-resume-id="site-bgv">
         <source src="assets/KHbg.mp4" type="video/mp4">

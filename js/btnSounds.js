@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-
+// button hovering sounds
 const buttons = document.querySelectorAll('.btn.nextbtn, .regBtn');
 const sound = document.getElementById('hoverSound');
 
@@ -39,4 +39,20 @@ buttons.forEach(button => {
     sound.volume=0.3;
     sound.play();
   });
+
+});
+
+
+// options click sound
+
+const options = document.querySelectorAll('select');
+const sounds = document.getElementById('clickSound');
+
+options.forEach(option =>{
+  option.addEventListener('change', () => {
+    sounds.currentTime = 0;
+    sounds.volume=0.3;
+    sounds.play();
+  })
+
 });

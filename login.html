@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <div class="game-container">
+    <div>
         <div class="login">
             <h1>Minesweeper Login</h1>
             <form id="loginForm">
@@ -20,16 +20,21 @@
                     <label for="password">Password:</label>
                     <input type="password" id="password" name="password" required>
                 </div>
-                <button type="submit" class="btn" id="loginBtn" data-sound="next.wav">Login</button>
+                <button type="submit" class="regBtn" id="loginBtn" data-sound="next.wav">Login</button>
             </form>
             <p id="loginMessage"></p>
-            <a href="index.html" class="btn" data-sound="back.wav">Back to Menu</a>
+            <a href="index.html" class="regBtn" data-sound="back.wav">Back to Menu</a>
         </div>
     </div>
     <script src="js/login.js"></script>
+    
+    <!-- button sounds -->
     <audio id="ButtonSounds" preload="auto"></audio>
+    <audio src="assets/click.wav" id="hoverSound"></audio>
     <script src="js/btnSounds.js" defer></script>
-    <button id="muteBtn" class="btn">🔊</button>
+    <button id="muteBtn" class="regBtn">🔊</button>
+    
+    <!-- game music -->
     <script src="js/gameMusic.js"></script>
     <video autoplay muted loop playsinline id="bgVideo" data-resume-id="site-bgv">
         <source src="assets/KHbg.mp4" type="video/mp4">
@@ -38,3 +43,23 @@
 </body>
 </html>
 
+    <!-- background: linear-gradient(
+    0deg,
+    #1d1df7 15%,
+    #0301a1 40%,
+    #060058 100%
+    );
+    
+    <audio src="assets/click.wav" id="hoverSound"></audio>
+
+.modal-content h1{
+    color:white;
+    text-decoration: none;
+    background: linear-gradient(
+    0deg,
+    #1d1df7 15%,
+    #0301a1 40%,
+    #060058 100%
+    );
+    text-align: center;
+} -->

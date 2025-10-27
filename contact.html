@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <div class="game-container">
+    <div >
         <div class="contact">
             <h1>Contact Us</h1>
             <div class="author">
@@ -25,13 +25,17 @@
                      Email:chenchiminlee@gmail.com
                 </p>
             </div>
-            <a href="index.html" class="btn" id="backBtn" data-sound="back.wav">Back to Menu</a>
+            <a href="index.html" class="regBtn" id="backBtn" data-sound="back.wav">Back to Menu</a>
         </div>
     </div>
-    <audio id="ButtonSounds" preload="auto"></audio>
-    <script src="js/btnSounds.js" defer></script>
 
-    <button id="muteBtn" class="btn">🔊</button>
+    <!-- button sounds -->
+    <audio id="ButtonSounds" preload="auto"></audio>
+    <audio src="assets/click.wav" id="hoverSound"></audio>
+    <script src="js/btnSounds.js" defer></script>
+    <button id="muteBtn" class="regBtn">🔊</button>
+    
+    <!-- Game music -->
     <script src="js/gameMusic.js"></script>
     <video autoplay muted loop playsinline id="bgVideo" data-resume-id="site-bgv">
         <source src="assets/KHbg.mp4" type="video/mp4">

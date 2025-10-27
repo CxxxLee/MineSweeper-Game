@@ -188,7 +188,12 @@ h1 {
 }
 
 .instructions {
-    background-color: rgba(0, 44, 118, 0.8);
+    background: linear-gradient(
+    0deg,
+    #1d1df7 15%,
+    #0301a1 40%,
+    #060058 100%
+    );
     color: #F8F9FA;
     padding: 2rem;
     border-radius: 10px;
@@ -196,12 +201,21 @@ h1 {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     max-width: 600px;
     width: 100%;
+    margin: 2rem auto;
+    opacity: 85%;
+    height:320px;
 }
 
 .instructions h1 {
-    color: #F8F9FA;
-    margin-bottom: 1.5rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color:white;
+    text-decoration: none;
+    background: linear-gradient(
+    0deg,
+    #1d1df7 15%,
+    #0301a1 40%,
+    #060058 100%
+    );
+    text-align: center;
 }
 
 .instructions ul {
@@ -220,20 +234,34 @@ h1 {
 }
 
 .contact {
-    background-color: rgba(0, 44, 118, 0.8);
+    background: linear-gradient(
+    0deg,
+    #1d1df7 15%,
+    #0301a1 40%,
+    #060058 100%
+    );
     color: #F8F9FA;
     padding: 2rem;
     border-radius: 10px;
     text-align: center;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     max-width: 600px;
-    width: 100%;
+    width: 400px;
+    height:320px;
+    margin: 2rem auto;
+    opacity: 85%;
 }
 
 .contact h1 {
-    color: #F8F9FA;
-    margin-bottom: 1.5rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color:white;
+    text-decoration: none;
+    background: linear-gradient(
+    0deg,
+    #1d1df7 15%,
+    #0301a1 40%,
+    #060058 100%
+    );
+    text-align: center;
 }
 
 .author {
@@ -258,7 +286,12 @@ h1 {
 }
 
 .login {
-    background-color: rgba(0, 44, 118, 0.8);
+    background: linear-gradient(
+    0deg,
+    #1d1df7 15%,
+    #0301a1 40%,
+    #060058 100%
+    );
     color: #F8F9FA;
     padding: 2rem;
     border-radius: 10px;
@@ -266,12 +299,21 @@ h1 {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     max-width: 400px;
     width: 100%;
+    margin: 2rem auto;
+    opacity: 85%;
+    height:350px;
 }
 
 .login h1 {
-    color: #F8F9FA;
-    margin-bottom: 1.5rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color:white;
+    text-decoration: none;
+    background: linear-gradient(
+    0deg,
+    #1d1df7 15%,
+    #0301a1 40%,
+    #060058 100%
+    );
+    text-align: center;
 }
 
 .input-group {
@@ -326,7 +368,12 @@ h1 {
 }
 
 .signup {
-    background-color: rgba(0, 44, 118, 0.8);
+    background: linear-gradient(
+    0deg,
+    #1d1df7 15%,
+    #0301a1 40%,
+    #060058 100%
+    );
     color: #F8F9FA;
     padding: 2rem;
     border-radius: 10px;
@@ -334,12 +381,21 @@ h1 {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     max-width: 400px;
     width: 100%;
+    margin: 2rem auto;
+    opacity: 85%;
+    height:500px;
 }
 
 .signup h1 {
-    color: #F8F9FA;
-    margin-bottom: 1.5rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color:white;
+    text-decoration: none;
+    background: linear-gradient(
+    0deg,
+    #1d1df7 15%,
+    #0301a1 40%,
+    #060058 100%
+    );
+    text-align: center;
 }
 
 #signupBtn {
@@ -367,7 +423,12 @@ h1 {
 .strong { background-color: #2ECC40; width: 100%; }
 
 .leaderboard {
-    background-color: rgba(0, 44, 118, 0.8);
+    background: linear-gradient(
+    0deg,
+    #1d1df7 15%,
+    #0301a1 40%,
+    #060058 100%
+    );
     color: #F8F9FA;
     padding: 2rem;
     border-radius: 10px;
@@ -376,6 +437,19 @@ h1 {
     max-width: 800px;
     width: 90%;
     margin: 2rem auto;
+    opacity: 85%;
+    height: 470px;
+}
+.leaderboard h1{
+    color:white;
+    text-decoration: none;
+    background: linear-gradient(
+    0deg,
+    #1d1df7 15%,
+    #0301a1 40%,
+    #060058 100%
+    );
+    text-align: center;
 }
 
 .leaderboard-controls {
