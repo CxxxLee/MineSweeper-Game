@@ -525,7 +525,8 @@ h1 {
     border: 3px solid #4a4a4a;
     padding: 1px;
     width: 100%;
-    max-width: 500px;
+    width: 500px;
+    height:500px;
     aspect-ratio: 1;
     margin: 1rem 0;
 }
@@ -648,7 +649,8 @@ h1 {
     }
     
     #board {
-        max-height: calc(80vh - 150px);
+    width: 500px;   /* whatever your normal size is */
+    height: 500px;  /* or however tall it should be */
     }
 }
 
