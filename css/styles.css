@@ -35,8 +35,10 @@ body {
     left:50%;
     right:50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(0, 44, 118, 0.8); 
-    color: #F8F9FA;
+    background-image: url('../assets/main-menu.jpg'); 
+    background-size: contain;
+    background-position: center;
+    color: #000000;
     padding: 2rem;
     border-radius: 10px;
     text-align: center;
@@ -44,14 +46,15 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 400px;
-    height:415px;
+    width: 840px;
+    height:500px;
+    opacity: 90%;
 }
 
 h1 {
-    color: #F8F9FA;
-    margin-bottom: 1.5rem;
+    color: #000000;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-decoration:underline;
 }
 
 .btn-container {
@@ -59,13 +62,26 @@ h1 {
     flex-direction: column;
     align-items: center;
     width: 100%;
+
 }
 
+.login-status{
+    color:red;
+}
+.new-game-btn{
+    position:relative;
+    top:170px;
+    width: 100%;
+}
 .secondary-btn-container {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     width: 100%;
+    position: absolute;
+    bottom: 10px; /* move up/down */
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .secondary-btn-container .btn {
@@ -83,8 +99,13 @@ h1 {
 
 .btn {
     font-family: 'JetBrains Mono', Arial, sans-serif;
-    background-color: #C41230;
-    color: #F8F9FA;
+    background: linear-gradient(
+    90deg,
+    #ffffff 30%,
+    #6d6b6b 100%
+    );
+    color: #535353;
+    opacity: 70%;
     border: none;
     padding: 0.5rem 1rem;
     font-size: 1rem;
@@ -95,15 +116,29 @@ h1 {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     text-decoration: none;
     display: inline-block;
+    border-bottom:2px solid black;
 }
 
 .btn:hover {
-    background-color: #F8F9FA;
-    color: #C41230;
+    background: linear-gradient(
+    90deg,
+    #ffffff 0%,    
+    #b9f9ff 30%,    
+    #00e0ff 45%,    
+    #5cc3ff 60%,   
+    #5b34e6 75%,    
+    #1018ad 85%,    
+    #0c00b1 100%   
+    );
+    opacity: 95%;
+    color: #000000;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
+.lgActive{
+    width:100%;
+}
 #newGameBtn {
     font-size: 1.5rem;
     padding: 1rem 2rem;

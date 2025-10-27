@@ -10,16 +10,17 @@
 
     <div class="main-menu">
         <h1>Minesweeper</h1>
-        <img src="assets/home.jpg" alt="home-menu" class="home-background">
-        <div id="loginStatus" class="login-status">Not logged in</div>
-        <div class="btn-container">
-            <a href="game.html" class="btn nextbtn" id="newGameBtn">New Game</a>
-            <div class="secondary-btn-container" id="secondaryBtns">
-                <a href="help.html" class="btn nextbtn" id="instructionsBtn">Instructions</a>
-                <a href="leaderboard.html" class="btn nextbtn" id="highScoresBtn">High Scores</a>
-                <a href="contact.html" class="btn nextbtn" id="contactBtn">Contact</a>
-                <a href="login.html" class="btn nextbtn" id="loginBtn">Login</a>
-                <a href="signup.html" class="btn nextbtn" id="signupBtn">Sign Up</a>
+        <div id="loginStatus" class="login-status">Not logged in! Please sign up or log in below to save game data!</div>
+            <div class="btn-container">
+                <div class="new-game-btn">
+                    <a href="game.html" class="btn nextbtn" id="newGameBtn">New Game</a>
+                </div>
+                <div class="secondary-btn-container" id="secondaryBtns">
+                    <a href="help.html" class="btn nextbtn" id="instructionsBtn">Instructions</a>
+                    <a href="leaderboard.html" class="btn nextbtn" id="highScoresBtn">High Scores</a>
+                    <a href="contact.html" class="btn nextbtn" id="contactBtn">Contact</a>
+                    <a href="login.html" class="btn nextbtn" id="loginBtn">Login</a>
+                    <a href="signup.html" class="btn nextbtn" id="signupBtn">Sign Up</a>
                 <button class="btn nextbtn" id="logoutBtn" style="display: none;">Logout</button>
             </div>
         </div>
@@ -31,6 +32,8 @@
         fetch('php/check_login.php')
             .then(response => response.json())
             .then(data => {
+                const helpBtn = document.getElementById('instructionsBtn');
+                const leaderboardBtn = document.getElementById('highScoresBtn')
                 const loginStatus = document.getElementById('loginStatus');
                 const loginBtn = document.getElementById('loginBtn');
                 const signupBtn = document.getElementById('signupBtn');
@@ -41,8 +44,10 @@
                     loginBtn.style.display = 'none';
                     signupBtn.style.display = 'none';
                     logoutBtn.style.display = 'inline-block';
+                    logoutBtn.classlist.add = "lgActive";
+
                 } else {
-                    loginStatus.innerText = 'Not logged in';
+                    loginStatus.innerText = 'Not logged in! \nPlease sign up or log in below to save game data!';
                     loginBtn.style.display = 'inline-block';
                     signupBtn.style.display = 'inline-block';
                     logoutBtn.style.display = 'none';
@@ -65,11 +70,33 @@
         });
     </script>
     <audio id="ButtonSounds" src="assets/Next.wav" preload="auto"></audio>
+    <audio src="assets/click.wav" id="hoverSound"></audio>
     <script src="js/btnSounds.js" defer></script>
     <script src="js/gameMusic.js"></script>
+    <!-- ensures the music restarts from 0 -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/') {
+        // Wait a bit for GameMusic.js to finish restoring
+        setTimeout(() => {
+        try {
+            const bgm = window.__bgm;
+            if (bgm) {
+            bgm.currentTime = 0;
+            bgm.play(); // ensures restart
+            }
+            localStorage.setItem('bgm_time', '0'); // overwrite saved position
+        } catch (e) {
+            console.error('Error resetting BGM:', e);
+        }
+        }, 500); // half a second delay to override GameMusic's restore timing
+    }
+    });
+    </script>
     <video autoplay muted loop playsinline id="bgVideo" data-resume-id="site-bgv">
         <source src="assets/KHbg.mp4" type="video/mp4">
     </video>
     <script src="js/videoResume.js" defer></script>
+    
 </body>
 </html>

@@ -28,3 +28,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+
+const buttons = document.querySelectorAll('.btn.nextbtn');
+const sound = document.getElementById('hoverSound');
+
+buttons.forEach(button => {
+  button.addEventListener('mouseenter', () => {
+    sound.currentTime = 0; // rewind to start so it plays every time
+    sound.volume=0.3;
+    sound.play();
+  });
+});
