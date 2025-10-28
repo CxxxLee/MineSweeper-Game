@@ -1,5 +1,3 @@
-
-
 let boardListenersAttached = false;
 
 function attachBoardListeners() {
@@ -167,22 +165,40 @@ function createBoard() {
   }
 }
 
+
+
+function placeFlag(tile) {
+  const img = document.createElement('img');
+  img.src = 'assets/mark.png';   // adjust path if needed
+  img.alt = 'flag';
+  img.className = 'flag-icon';
+  tile.appendChild(img);
+  tile.dataset.flagged = '1';
+}
+
+function removeFlag(tile) {
+  const img = tile.querySelector('.flag-icon');
+  if (img) img.remove();
+  delete tile.dataset.flagged;
+}
+
 function toggleFlag(tile) {
   if (gameOver) return;
-  // Don’t flag revealed tiles
-  if (tile.classList.contains("tile-clicked")) return;
+  if (tile.classList.contains("tile-clicked")) return; // don't flag revealed tiles
 
-  if (tile.innerText === "") {
+  const hasFlag = !!tile.querySelector('.flag-icon');
+
+  if (!hasFlag) {
     // place flag
-    tile.innerText = "🐾";
-    document.getElementById("mines").innerText = --mines; // show remaining
+    placeFlag(tile);
+    document.getElementById("mines").innerText = --mines;
     if (minesLocation.includes(tile.id)) {
       correctlyFlaggedMines++;
     }
-  } else if (tile.innerText === "🐾") {
+  } else {
     // remove flag
-    tile.innerText = "";
-    document.getElementById("mines").innerText = ++mines; // show remaining
+    removeFlag(tile);
+    document.getElementById("mines").innerText = ++mines;
     if (minesLocation.includes(tile.id)) {
       correctlyFlaggedMines--;
     }
@@ -190,39 +206,31 @@ function toggleFlag(tile) {
 }
 
 function clickTile() {
-    if(gameOver || this.classList.contains("tile-clicked" || this.innerText == "🐾")) {
-        return; // Prevent action if game is over or tile has already been clicked
-    }
-    let tile = this; // Get the clicked tile
+    if (gameOver) return;
+    
+    // block re-clicks and clicks on flagged tiles
+    if (this.classList.contains("tile-clicked")) return;
+    if (this.querySelector('.flag-icon')) return;
+    
+    const tile = this; // Get the clicked tile
 
-    if(firstClick) {
+
+    if (firstClick) {
         startTimer();
         firstClick = false;
-        let coords = tile.id.split("-"); // Get the coordinates
-        let firstClickRow = parseInt(coords[0]); // Get row
-        let firstClickCol = parseInt(coords[1]); // Get column
-
-        //ensures first click is not a mine
+        const [firstClickRow, firstClickCol] = tile.id.split("-").map(Number);
         setMines(firstClickRow, firstClickCol);
     }
-    if(tile.innerText == "🐾") {
-        return; // Prevent action if tile has a flag
-    }
 
-    if(minesLocation.includes(tile.id)) {
+    if (minesLocation.includes(tile.id)) {
         revealMines();
-        gameOver = true; // Set game over flag
-        //alert("Game Over!"); // Alert the user
+        gameOver = true;
         return;
     }
 
-
-    let coords = tile.id.split("-"); // Get the coordinates
-    let r = parseInt(coords[0]); // Get row
-    let c = parseInt(coords[1]); // Get column
-    checkMine(r, c); // Check for adjacent mines
+    const [r, c] = tile.id.split("-").map(Number);
+    checkMine(r, c);
     console.log("Clicked Tile ID:", tile.id, "Tiles Clicked:", tilesClicked);
-
 }
 
 function revealMines() {
@@ -231,21 +239,26 @@ function revealMines() {
     stopTimer();
     updateGameStats('loss');
 
-    // Show all mines
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < cols; c++) {
-            let tile = board[r][c];
-            if(minesLocation.includes(tile.id)) {
+            const tile = board[r][c];
+
+            // show all mines
+            if (minesLocation.includes(tile.id)) {
+                // clear any flag image before showing bomb
+                removeFlag(tile);
                 tile.innerText = "💣";
                 tile.style.backgroundColor = "red";
             }
-            // Flag all incorrectly flagged tiles
-            if(!minesLocation.includes(tile.id) && tile.innerText == "🐾") {
+
+            // mark incorrect flags
+            if (!minesLocation.includes(tile.id) && tile.querySelector('.flag-icon')) {
+                removeFlag(tile);
                 tile.innerText = "❌";
                 tile.style.backgroundColor = "blue";
             }
         }
-    }    
+    }   
     
     // Game Over Modal
     if (window.BGM) BGM.pause(); // pause background music
@@ -303,13 +316,12 @@ function revealMines() {
 function checkMine(r,c){
     if(r < 0 || c < 0 || r >= rows || c >= cols){
         return; // Check bounds
-    } 
-    if(board[r][c].classList.contains("tile-clicked") || board[r][c].innerText == "🐾" ) {
-        return; // Check if tile has already been clicked
     }
 
-    board[r][c].classList.add("tile-clicked"); // Mark tile as clicked
+    const cell = board[r][c];
+    if (cell.classList.contains("tile-clicked") || cell.querySelector('.flag-icon')) return;
 
+    cell.classList.add("tile-clicked");
     tilesClicked += 1;
     console.log("checkMine - Incremented tilesClicked:", tilesClicked);
 
@@ -329,9 +341,9 @@ function checkMine(r,c){
     minesFound += checkTile(r+1, c); // Check bottom
     minesFound += checkTile(r+1, c+1); // Check bottom right
 
-    if(minesFound > 0){
-        board[r][c].innerText = minesFound; // Display the number of adjacent mines
-        board[r][c].classList.add("x" + minesFound.toString());
+    if (minesFound > 0) {
+        cell.innerText = minesFound;
+        cell.classList.add("x" + minesFound);
     }
     else{
         //top 3
@@ -350,7 +362,7 @@ function checkMine(r,c){
     }   
     // Adjusted win condition check
     if (tilesClicked == (rows * cols) - numMines) {
-        if (window.BGM) BGM.pause(); // pause background music
+        if (window.BGM) BGM.pause();
         document.getElementById("mines").innerText = "Cleared";
         gameOver = true;
         stopTimer();
@@ -414,13 +426,11 @@ function checkMine(r,c){
 
         // Flag all remaining unflagged mines
         minesLocation.forEach(id => {
-            const [r, c] = id.split("-").map(Number);
-            const tile = board[r][c];
-    
-            // Flag only if the tile isn't already flagged or clicked
-            if (!tile.classList.contains("tile-clicked") && tile.innerText !== "🐾") {
-                tile.innerText = "🐾"; // Set flag symbol
-                tile.classList.add("flag"); // Optional styling
+            const [rr, cc] = id.split("-").map(Number);
+            const t = board[rr][cc];
+            if (!t.classList.contains("tile-clicked") && !t.querySelector('.flag-icon')) {
+                placeFlag(t);
+                t.classList.add("flag"); // (optional styling hook)
             }
         });
     }
