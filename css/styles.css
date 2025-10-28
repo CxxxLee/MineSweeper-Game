@@ -564,45 +564,6 @@ h1 {
     font-size: 1.2rem;
 }
 
-.game-nav {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    padding-top: 0.5rem;
-    width: 100%;
-}
-
-#flag-button {
-    padding: 0.5rem 1rem;
-    font-size: 1.8rem;
-    background-color: #e0e0e0;
-    border: 2px solid #4a4a4a;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-#flag-button:hover {
-    background-color: #d0d0d0;
-    transform: scale(1.05);
-}
-
-#flag-button.active {
-    background-color: #4a4a4a;
-    color: #fff;
-}
-
-.nav-buttons {
-    display: flex;
-    gap: 1.5rem;
-    justify-content: center;
-}
-
-.nav-buttons .btn {
-    min-width: 120px;
-    text-align: center;
-}
 
 /* Number colors with consistent sizing */
 .x1, .x2, .x3, .x4, .x5, .x6, .x7, .x8 {
