@@ -282,6 +282,15 @@ function revealMines() {
     closeBtn.className = 'regBtn';
     closeBtn.innerText = 'Close';
 
+    const hoverAudio = document.getElementById('hoverSound');
+    if (hoverAudio) {
+    closeBtn.addEventListener('mouseenter', () => {
+        hoverAudio.currentTime = 0;
+        hoverAudio.volume = 0.3;
+        hoverAudio.play().catch(() => {});
+    });
+    }
+
     
     modalContent.appendChild(gameOverText);
     modalContent.appendChild(img);
@@ -403,6 +412,15 @@ function checkMine(r,c){
              if (window.BGM) BGM.play();
         }
         
+        // attach hover just for this button
+        const hoverAudio = document.getElementById('hoverSound');
+        if (hoverAudio) {
+        closeBtn.addEventListener('mouseenter', () => {
+            hoverAudio.currentTime = 0;
+            hoverAudio.volume = 0.3;
+            hoverAudio.play().catch(() => {});
+        });
+        }
 
         modalContent.appendChild(gameOverText);
         modalContent.appendChild(closeBtn);
