@@ -26,6 +26,10 @@ body {
     margin: 0;
     height: auto;
     overflow: auto;     /* ensures scroll is enabled */
+    cursor: url('../assets/Kingdom Key.cur'), auto;
+}
+a:hover, button:hover, .tile:hover, .difficulty-selector select:hover {
+  cursor: url('../assets/Kingdom Key.cur'), auto; /* override hand */
 }
 
 .main-menu {
@@ -1031,24 +1035,21 @@ h1 {
 
 }
 
-/* New animation for text pulsing */
-@keyframes textPulse {
-    0% { text-shadow: 0 0 10px #39ff14; }
-    100% { text-shadow: 0 0 20px #39ff14, 0 0 30px #39ff14; }
+/*  cursor swap for terra */
+body.theme-terra, body.theme-terra a:hover,
+body.theme-terra button:hover,
+body.theme-terra .tile:hover,
+body.theme-terra .difficulty-selector select:hover{
+    cursor: url('../assets/ThreeWishes.cur'), auto;
 }
 
-/* Enhanced toxic glow animation */
-@keyframes toxicGlow {
-    0% { 
-        opacity: 0.3; 
-        transform: scale(1);
-        filter: hue-rotate(0deg);
-    }
-    100% { 
-        opacity: 0.7; 
-        transform: scale(1.2);
-        filter: hue-rotate(30deg);
-    }
+
+/* cursor swap for aqua */
+body.theme-aqua, body.theme-aqua a:hover,
+body.theme-aqua button:hover,
+body.theme-aqua .tile:hover,
+body.theme-aqua .difficulty-selector select:hover{
+    cursor: url('../assets/Spellbinder.cur'), auto;
 }
 
 .description{
