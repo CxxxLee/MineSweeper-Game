@@ -435,7 +435,7 @@ h1 {
     width: 90%;
     margin: 2rem auto;
     opacity: 85%;
-    height: 470px;
+    height: 800px;
 }
 .leaderboard h1{
     color:white;
@@ -454,13 +454,26 @@ h1 {
 }
 
 .leaderboard-table {
-    width: 100%;
+    display: block;
+    width: 800px;
     border-collapse: collapse;
     margin-bottom: 1rem;
     background-color: rgba(248, 249, 250, 0.1);
     border-radius: 5px;
+    height: 600px;
+    overflow-y:scroll;
+    table-layout: fixed;
 }
 
+
+.leaderboard-table th{
+    width: 29%;
+    height:100%;
+}
+
+th{
+    width:25%;
+}
 .leaderboard-table th,
 .leaderboard-table td {
     padding: 0.75rem;
