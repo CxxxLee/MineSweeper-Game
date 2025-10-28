@@ -161,14 +161,14 @@ h1 {
     margin: 0.5rem;
     cursor: pointer;
     transition: all 0.3s;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     text-decoration: none;
     display: inline-block;
+    box-shadow: 0 0 0 0 transparent;
 }
 
 .regBtn:hover{
     background:red;
-    border: 5px solid rgba(141, 0, 0, 0.719);
+    box-shadow: 0 0 0 10px rgba(240, 11, 11, 0.719); 
 
 }
 
@@ -452,7 +452,10 @@ h1 {
 .leaderboard-controls {
     margin-bottom: 1rem;
 }
-
+.leaderboard-controls p{
+    display: inline;
+    font-size: 28px;
+}
 .leaderboard-table {
     display: block;
     width: 800px;

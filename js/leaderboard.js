@@ -37,17 +37,7 @@ function displayLeaderboard(leaderboardData) {
     const sortBy = document.getElementById('sortBy').value;
     leaderboardData.sort((a, b) => {
         switch (sortBy) {
-            case 'difficulty':
-                // Order: superEasy, easy, medium, hard
-                const difficultyOrder = {
-                    'superEasy': 1,
-                    'easy': 2,
-                    'medium': 3,
-                    'hard': 4
-                };
-                return difficultyOrder[a.difficulty] - difficultyOrder[b.difficulty];
-            case 'games_won':
-                return b.games_won - a.games_won;
+
             case 'time_taken':
                 // Handle null/undefined best times
                 if (!a.best_time) return 1;
