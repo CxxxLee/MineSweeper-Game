@@ -604,75 +604,6 @@ h1 {
     line-height: 1;
 }
 
-/* Make the game responsive for smaller screens */
-@media (max-width: 900px) {
-
-    .main-menu{
-        height:65%;
-        width: 65%;
-        background-repeat: no-repeat;
-        background-size: cover;
-
-    }
-    #newGameBtn{
-        position: relative;
-        top: -40px;
-    }
-    #bgVideo {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;   /* fits whole video */
-    transform: translate(-50%, -50%); /* keeps it centered */
-    background-color: black; /* fills gaps on sides */
-    }
-    .game-container {
-        padding: 1rem;
-        width: 60%;
-        height:70%;
-
-    }
-    
-    #board {
-    width: 350px;   /* whatever your normal size is */
-    height: 350px;  /* or however tall it should be */
-    }
-}
-
-@media (max-width: 600px) {
-    .game-container {
-        padding: 0.5rem;
-        width: 60%;
-        height:70%;
-    }
-    #newGameBtn{
-        position: relative;
-        top: -140px;
-    }
-    .main-menu{
-        height:60%;
-        width: 70%;
-        background-repeat: no-repeat;
-    }
-    
-    .game-header {
-        font-size: 1.2rem;
-    }
-    #board {
-    width: 150px;   /* whatever your normal size is */
-    height: 150px;  /* or however tall it should be */
-    }
-    .nav-buttons {
-        flex-direction: column;
-    }
-    
-    .regBtn .btn {
-        width: 100%;
-    }
-}
-
 .modal {
     display: none;  /* Keep this as none by default */
     position: fixed;
@@ -810,17 +741,6 @@ h1 {
     font-size: 1.2rem;
 }
 
-@media (max-width: 600px) {
-    .game-over-modal {
-        width: 95%;
-        padding: 1rem;
-    }
-    
-    .game-over-modal h1 {
-        font-size: 1.5rem;
-    }
-}
-
 .theme-selectors {
     display: flex;
     gap: 1rem;
@@ -921,17 +841,6 @@ h1 {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
-}
-
-@media (max-width: 600px) {
-    .theme-selectors {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .theme-selector {
-        width: 100%;
-    }
 }
 
 /* Add these new styles */
@@ -1069,4 +978,106 @@ body.theme-aqua .difficulty-selector select:hover{
   display: block;
   margin: auto;
   pointer-events: none; /* clicks still hit the tile */
+}
+
+
+/* Make the game responsive for smaller screens */
+@media (max-width: 900px) {
+
+    .main-menu{
+        height:65%;
+        width: 65%;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+    }
+    #newGameBtn{
+        position: relative;
+        top: -40px;
+    }
+    #bgVideo {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;   /* fits whole video */
+    transform: translate(-50%, -50%); /* keeps it centered */
+    background-color: black; /* fills gaps on sides */
+    }
+    .game-container {
+        padding: 1rem;
+        width: 60%;
+        height:70%;
+
+    }
+    
+    #board {
+    width: 350px;   /* whatever your normal size is */
+    height: 350px;  /* or however tall it should be */
+    }
+
+    .help-container{
+        height:85%;
+        width:95%;
+    }
+
+    .leaderboard{
+        height:75%;
+        width:75%;
+    }
+
+    .leaderboard-container{
+        width:100%;
+        height:100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .game-container {
+        padding: 0.5rem;
+        width: 60%;
+        height:70%;
+    }
+    #newGameBtn{
+        position: relative;
+        top: -140px;
+    }
+    .main-menu{
+        height:60%;
+        width: 70%;
+        background-repeat: no-repeat;
+    }
+    
+    .game-header {
+        font-size: 1.2rem;
+    }
+    #board {
+    width: 150px;   /* whatever your normal size is */
+    height: 150px;  /* or however tall it should be */
+    }
+    .nav-buttons {
+        flex-direction: column;
+    }
+    
+    .regBtn .btn {
+        width: 100%;
+    }
+
+    .theme-selectors {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .theme-selector {
+        width: 100%;
+    }    
+    .game-over-modal {
+        width: 95%;
+        padding: 1rem;
+    }
+    
+    .game-over-modal h1 {
+        font-size: 1.5rem;
+    }
 }
