@@ -23,42 +23,47 @@ async function loadLeaderboard() {
 }
 
 function displayLeaderboard(leaderboardData) {
-    const tbody = document.getElementById('leaderboardBody');
-    tbody.innerHTML = '';
-    
-    if (leaderboardData.length === 0) {
-        const row = document.createElement('tr');
-        row.innerHTML = '<td colspan="4">No games played yet</td>';
-        tbody.appendChild(row);
-        return;
+  const tbody = document.getElementById('leaderboardBody');
+  tbody.innerHTML = '';
+
+  const selectedDiff = document.getElementById('sortBy').value; // superEasy | easy | medium | hard
+
+  // 1) Filter to the selected difficulty
+  const filtered = leaderboardData.filter(item => item.difficulty === selectedDiff);
+
+  // 2) For each player, keep only their best time at this difficulty
+  const bestByUser = new Map(); // username -> { username, best_time }
+  filtered.forEach(({ username, best_time }) => {
+    if (best_time == null) return; // skip missing times
+    const current = bestByUser.get(username);
+    if (!current || best_time < current.best_time) {
+      bestByUser.set(username, { username, best_time });
     }
+  });
 
-    // Sort data based on selected criteria
-    const sortBy = document.getElementById('sortBy').value;
-    leaderboardData.sort((a, b) => {
-        switch (sortBy) {
+  // Convert to array
+  const rows = Array.from(bestByUser.values());
 
-            case 'time_taken':
-                // Handle null/undefined best times
-                if (!a.best_time) return 1;
-                if (!b.best_time) return -1;
-                return a.best_time - b.best_time;
-            default:
-                return 0;
-        }
-    });
+  if (rows.length === 0) {
+    const row = document.createElement('tr');
+    row.innerHTML = `<td colspan="3">No ${formatDifficulty(selectedDiff)} games yet</td>`;
+    tbody.appendChild(row);
+    return;
+  }
 
-    leaderboardData.forEach((player) => {
-        const row = document.createElement('tr');
-        // Format difficulty display
-        const formattedDifficulty = formatDifficulty(player.difficulty);
-        row.innerHTML = `
-            <td>${player.username}</td>
-            <td>${formattedDifficulty}</td>
-            <td>${formatTime(player.best_time)}</td>
-        `;
-        tbody.appendChild(row);
-    });
+  // 3) Sort by best time (lower is better)
+  rows.sort((a, b) => a.best_time - b.best_time);
+
+  // Render
+  rows.forEach(({ username, best_time }) => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${username}</td>
+      <td>${formatDifficulty(selectedDiff)}</td>
+      <td>${formatTime(best_time)}</td>
+    `;
+    tbody.appendChild(tr);
+  });
 }
 
 function formatTime(seconds) {
