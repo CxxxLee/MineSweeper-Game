@@ -55,7 +55,6 @@ function displayLeaderboard(leaderboardData) {
         row.innerHTML = `
             <td>${player.username}</td>
             <td>${formattedDifficulty}</td>
-            <td>${player.games_won}/${player.games_played}</td>
             <td>${formatTime(player.best_time)}</td>
         `;
         tbody.appendChild(row);

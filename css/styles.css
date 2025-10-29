@@ -435,7 +435,7 @@ h1 {
     width: 90%;
     margin: 2rem auto;
     opacity: 85%;
-    height: 800px;
+    height: 600px;
 }
 .leaderboard h1{
     color:white;
@@ -456,32 +456,31 @@ h1 {
     display: inline;
     font-size: 28px;
 }
-.leaderboard-table {
-    display: block;
+
+.leaderboard-container{
     width: 800px;
-    border-collapse: collapse;
+    height: 390px;
     margin-bottom: 1rem;
-    background-color: rgba(248, 249, 250, 0.1);
+    overflow-y: auto;
     border-radius: 5px;
-    height: 600px;
-    overflow-y:scroll;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
     table-layout: fixed;
 }
 
-
-.leaderboard-table th{
-    width: 29%;
-    height:100%;
-}
-
-th{
-    width:25%;
-}
 .leaderboard-table th,
 .leaderboard-table td {
     padding: 0.75rem;
-    text-align: center;
+    text-align: left;
     border-bottom: 1px solid rgba(248, 249, 250, 0.2);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .leaderboard-table th {
