@@ -606,6 +606,18 @@ h1 {
 
 /* Make the game responsive for smaller screens */
 @media (max-width: 900px) {
+
+    .main-menu{
+        height:65%;
+        width: 65%;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+    }
+    #newGameBtn{
+        position: relative;
+        top: -40px;
+    }
     #bgVideo {
     position: fixed;
     top: 50%;
@@ -635,6 +647,15 @@ h1 {
         width: 60%;
         height:70%;
     }
+    #newGameBtn{
+        position: relative;
+        top: -140px;
+    }
+    .main-menu{
+        height:60%;
+        width: 70%;
+        background-repeat: no-repeat;
+    }
     
     .game-header {
         font-size: 1.2rem;
@@ -647,7 +668,7 @@ h1 {
         flex-direction: column;
     }
     
-    .nav-buttons .btn {
+    .regBtn .btn {
         width: 100%;
     }
 }
