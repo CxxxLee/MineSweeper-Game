@@ -511,7 +511,7 @@ h1 {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     width: 660px;
     opacity: 80%;
-    margin: 1rem auto;
+    margin: 2rem auto;
     height:810px;
 }
 .game-info {
@@ -618,25 +618,31 @@ h1 {
     }
     .game-container {
         padding: 1rem;
-        width: 85%;
+        width: 60%;
+        height:70%;
+
     }
     
     #board {
-    width: 500px;   /* whatever your normal size is */
-    height: 500px;  /* or however tall it should be */
+    width: 350px;   /* whatever your normal size is */
+    height: 350px;  /* or however tall it should be */
     }
 }
 
 @media (max-width: 600px) {
     .game-container {
         padding: 0.5rem;
-        width: 98%;
+        width: 60%;
+        height:70%;
     }
     
     .game-header {
         font-size: 1.2rem;
     }
-    
+    #board {
+    width: 150px;   /* whatever your normal size is */
+    height: 150px;  /* or however tall it should be */
+    }
     .nav-buttons {
         flex-direction: column;
     }
