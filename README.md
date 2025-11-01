@@ -40,4 +40,4 @@ A modern web version of the classic **Minesweeper** game — built using **JavaS
 
 1. **Clone this repository:**
    ```bash
-   git clone https://github.com/yourusername/minesweeper.git
+   git clone https://github.com/CxxxLee/minesweeper.git
