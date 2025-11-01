@@ -13,7 +13,7 @@ A modern web version of the classic **Minesweeper** game — built using **JavaS
 - 📊 Player stats (games played, won, lost, average time)
 - 🔊 Sound effects for hover, click, and win/loss
 - 🖼️ Animated background video for visual appeal
-- 📱 Responsive design optimized for both desktop and mobile
+- 📱 Responsive design optimized for different screens
 - 💾 Persistent user data saved in MySQL database
 
 ---
