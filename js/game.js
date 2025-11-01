@@ -41,42 +41,73 @@ const difficulties = {
 let currentBoardStyle = 'ventus';
 let currentColorTheme = 'ventus';
 
-// Add this function at the top level of game.js
 async function updateGameStats(result) {
-    if (!document.cookie.includes('PHPSESSID')) {
-        console.log('User not logged in, skipping stats update');
-        return;
+  //skip when logged out
+  if (!document.cookie.includes('PHPSESSID')) {
+    console.log('User not logged in, skipping stats update');
+    return;
+  }
+
+  const url = new URL('/php/update_stats.php', window.location.origin).href;
+
+  const formData = new FormData();
+  formData.append('result', result);
+  formData.append('time', String(elapsedTime)); // be explicit
+  const currentDifficulty = document.getElementById('difficulty').value;
+  formData.append('difficulty', currentDifficulty);
+
+  console.log('Sending game stats:', {
+    result, time: elapsedTime, difficulty: currentDifficulty
+  });
+
+  // simple retry wrapper
+  const doFetch = async () => {
+    const resp = await fetch(url, {
+      method: 'POST',
+      body: formData,
+      credentials: 'include',      // send cookies explicitly
+      cache: 'no-store',           // avoid cached intermediaries
+      keepalive: true              // helps if user navigates away soon
+    });
+    return resp;
+  };
+
+  try {
+    let response;
+    let attempt = 0;
+    let lastErr;
+
+    while (attempt < 2) { // retry on network flake
+      try {
+        response = await doFetch();
+        break;
+      } catch (e) {
+        lastErr = e;
+        attempt++;
+      }
+    }
+    if (!response) throw lastErr;
+
+    const ct = response.headers.get('content-type') || '';
+    if (!response.ok) {
+      const text = await response.text().catch(() => '');
+      console.error('Stats update HTTP error:', response.status, text);
+      return;
     }
 
-    try {
-        const formData = new FormData();
-        formData.append('result', result);
-        formData.append('time', elapsedTime);
-        const currentDifficulty = document.getElementById('difficulty').value;
-        formData.append('difficulty', currentDifficulty);
+    const data = ct.includes('application/json')
+      ? await response.json().catch(async () => ({ raw: await response.text() }))
+      : { raw: await response.text() };
 
-        console.log('Sending game stats:', {
-            result: result,
-            time: elapsedTime,
-            difficulty: currentDifficulty
-        });
+    console.log('Server response:', data);
 
-        const response = await fetch('php/update_stats.php', {
-            method: 'POST',
-            body: formData
-        });
-        
-        const data = await response.json();
-        console.log('Server response:', data);
-        
-        if (!data.success) {
-            console.error('Failed to update stats:', data.message);
-        }
-    } catch (error) {
-        console.error('Error updating stats:', error);
+    if (!data.success) {
+      console.error('Failed to update stats:', data.message || data.raw || data);
     }
+  } catch (error) {
+    console.error('Error updating stats (network/SSL?):', error);
+  }
 }
-
 window.onload = function() {
     const difficultySelect = document.getElementById('difficulty');
     const boardStyleSelect = document.getElementById('boardStyle');
@@ -122,7 +153,6 @@ function setMines(excludeRow, excludeCol) {
 
 function startGame() {
   
-    // Rest of your existing startGame code...
     initializeUI();
     createBoard();
 }

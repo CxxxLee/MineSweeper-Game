@@ -28,10 +28,10 @@ function displayLeaderboard(leaderboardData) {
 
   const selectedDiff = document.getElementById('sortBy').value; // superEasy | easy | medium | hard
 
-  // 1) Filter to the selected difficulty
+  // Filter to the selected difficulty
   const filtered = leaderboardData.filter(item => item.difficulty === selectedDiff);
 
-  // 2) For each player, keep only their best time at this difficulty
+  // For each player, keep only their best time at this difficulty
   const bestByUser = new Map(); // username -> { username, best_time }
   filtered.forEach(({ username, best_time }) => {
     if (best_time == null) return; // skip missing times
@@ -51,7 +51,7 @@ function displayLeaderboard(leaderboardData) {
     return;
   }
 
-  // 3) Sort by best time (lower is better)
+  // Sort by best time (lower is better)
   rows.sort((a, b) => a.best_time - b.best_time);
 
   // Render
@@ -73,7 +73,7 @@ function formatTime(seconds) {
     return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
 }
 
-// Add this new function to format difficulty display
+// function to format difficulty display
 function formatDifficulty(difficulty) {
     const difficultyMap = {
         'superEasy': 'Super Easy',

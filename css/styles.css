@@ -784,13 +784,7 @@ h1 {
 }
 
 .board-aqua {
-    background: repeating-linear-gradient(
-        45deg,
-        #4e65e7,
-        #1eaee7 10px,
-        #1749eb 10px,
-        #0207ff 20px
-    );
+    background-color:#1eaee7 10px;
     border: 8px solid #1100ff;
     border-radius: 15px;
     box-shadow: 0 0 15px rgba(7, 1, 85, 0.6);
@@ -808,8 +802,9 @@ h1 {
 /* Tile styles for each board theme */
 .board-ventus .tile {
     background-color: #f0f0f0;
-    border-right: 1px solid #000000;
-    border-bottom: 1px solid #000000;
+    border: 1px solid rgb(133, 133, 133);
+    /* border-right: 1px solid #000000;
+    border-bottom: 1px solid #000000; */
 }
 
 .board-ventus .tile:hover {
@@ -828,7 +823,7 @@ h1 {
 }
 
 .board-aqua .tile:hover {
-    background-color: #186ff1;
+    background-color: #00327c;
     transform: scale(1.05);
 }
 
@@ -919,6 +914,10 @@ h1 {
     color: rgba(226, 167, 56, 0.8);
     box-shadow: inset 0 0 10px rgba(243, 111, 2, 0.8);
 }
+
+
+.board-aqua .x1 { color:#002438; text-shadow: 0 0 8px #000080}
+
 
 /* Update Number colors for terra board */
 .board-terra .x1 { color: #804d4d; text-shadow: 0 0 8px #ff9999; }
